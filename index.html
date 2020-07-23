@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<!-- basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- mobile metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<!-- site metas -->
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- site icons -->
+<link rel="icon" href="images/fevicon/fevicon.png" type="image/gif" />
+<!-- bootstrap css -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- Site css -->
+<link rel="stylesheet" href="css/style.css" />
+<!-- responsive css -->
+<link rel="stylesheet" href="css/responsive.css" />
+<!-- colors css -->
+<link rel="stylesheet" href="css/colors1.css" />
+<!-- custom css -->
+<link rel="stylesheet" href="css/custom.css" />
+<!-- wow Animation css -->
+<link rel="stylesheet" href="css/animate.css" />
+<!-- revolution slider css -->
+<link rel="stylesheet" type="text/css" href="revolution/css/settings.css" />
+<link rel="stylesheet" type="text/css" href="revolution/css/layers.css" />
+<link rel="stylesheet" type="text/css" href="revolution/css/navigation.css" />
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+
+<title>Plasma exchange calculator</title>
+<h1 style="text-align: center; font-weight: bold">Plasma exchange calculator</h1>
+
+</head>
+
+<body id="default_theme" class="it_service">
+<br>
+<p>
+Please answer <font color=red>ALL</font> the following questions.
+</p>
+
+<form>
+
+<fieldset>
+	<strong>1. What is the patient's sex?</strong> <br><br>
+	<input type="radio" id="male" name="sex" value="male">
+	<label for="male">Male</label><br>
+	<input type="radio" id="female" name="sex" value="female">
+	<label for="female">Female</label><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+	<label for="weight"><strong>2. What is the patient's weight in kilograms?</strong></label><br><br>
+	<input type="number" id="weight" min="0">
+</fieldset>
+
+<br>
+
+<fieldset>
+	<strong>3. How many plasma volumes do you want to exchange?</strong> <br><br>
+	<input type="radio" id="0.8" name="plasmaVolume" value="0.8" onchange="hideOthers()">
+	<label for="0.8">0.8</label><br>
+	<input type="radio" id="1.0" name="plasmaVolume" value="1.0" onchange="hideOthers()">
+	<label for="0.8">1.0</label><br>
+	<input type="radio" id="1.5" name="plasmaVolume" value="1.5" onchange="hideOthers()">
+	<label for="0.8">1.5</label><br>
+	<input type="radio" id="2.0" name="plasmaVolume" value="2.0" onchange="hideOthers()">
+	<label for="0.8">2.0</label><br>
+	<input type="radio" id="Others" name="plasmaVolume" value="Others" onchange="showOthers()">
+	<label for="Others">Others</label><br>
+	<br>
+	<label for="plasmaVolumeOthers" id="plasmaVolumeOthers1">Please specify how many plasma volumes you want to exchange:</label>
+	<input type="number" id="plasmaVolumeOthers2" min="0">
+</fieldset>
+
+<br>
+
+<fieldset>
+	<label for="hct"><strong>4. What is the patient's latest haematocrit (in percentage, e.g. 45%)?</strong></label><br><br>
+	<input type="number" id="hct" min="0" max="100">
+</fieldset>
+
+<br>
+
+<fieldset>
+	<strong>5. What is the patient's body habitus?</strong> <br><br>
+	<input type="radio" id="habitusNormal" name="habitus" value="normal">
+	<label for="habitusNormal">Normal</label><br>
+	<input type="radio" id="habitusThin" name="habitus" value="thin">
+	<label for="habitusThin">Thin</label><br>
+	<input type="radio" id="habitusFat" name="habitus" value="fat">
+	<label for="habitusFat">Fat</label><br>
+	<input type="radio" id="habitusMuscular" name="habitus" value="muscular">
+	<label for="habitusMuscular">Muscular</label><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+	<strong>6. Is the latest albumin < 35 g/L or ≥ 35 g/L?</strong> <br><br>
+	<input type="radio" id="less35" name="albumin" value="less35">
+	<label for="less35">< 35 g/L</label><br>
+	<input type="radio" id="35orMore" name="albumin" value="35orMore">
+	<label for="35orMore">≥ 35 g/L</label><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+	<strong>7. Are any of the following conditions present? Check all that apply.</strong> <br><br>
+	<input type="checkbox" id="condition1" value="condition1">
+	<label for="condition1">The current plasma exchange cycle is the 4th, that is following within a week of the 1st.<br> 
+	Or equivalently, an 8th cycle within a week of the 5th, a 12th cycle within a week of the 9th, etc</label><br><br>
+	<input type="checkbox" id="condition2" value="condition2">
+	<label for="condition2">Patient has pre-existing thrombocytopenia or coagulopathy, and is currently undergoing 
+	frequent plasma exchange cycles</label><br><br>
+	<input type="checkbox" id="condition3" value="condition3">
+	<label for="condition3">PT > 21.2 seconds (i.e. >1.8 x the upper limit of normal)</label><br><br>
+	<input type="checkbox" id="condition4" value="condition4">
+	<label for="condition4">APTT > 58.0 seconds (i.e. > 1.8 x the upper limit of normal)</label><br><br>
+	<input type="checkbox" id="condition5" value="condition5">
+	<label for="condition5">Fibrinogen < 1.0 g/L</label><br><br>
+	<input type="checkbox" id="condition6" value="condition6">
+	<label for="condition6">Ongoing bleeding</label>
+</fieldset>
+
+</form>
+
+<br>
+
+<p style="text-align: center; font-size:24px;"><button onclick="calculate()">Calculate!</button></p>
+
+<br><br>
+
+<p id="results"></p>
+
+<table style="text-align: center; margin-left:auto; margin-right:auto;" id="results2" border="1">
+	<tr>
+		<th style="padding:10px">Method of calculation</th>
+		<th style="padding:10px">Volume of normal saline / mL</th>
+		<th style="padding:10px">Volume of 5% albumin / mL</th>
+		<th style="padding:10px">Volume of FFP / mL</th>
+	</tr>
+	<tr>
+		<td style="text-align: left; padding:10px">Gilcher's rule of 5, limiting normal saline to 500 mL or less<br>under any circumstances <strong>(RECOMMENDED)</strong></td>
+		<td id="NS_1a"></td>
+		<td id="alb_1a"></td>
+		<td id="FFP1"></td>
+	</tr>
+	<tr>
+		<td style="text-align: left; padding:10px">Gilcher's rule of 5, allowing normal saline to exceed 500 mL<br>if albumin ≥ 35 g/L</td>
+		<td id="NS_1b"></td>
+		<td id="alb_1b"></td>
+		<td id="FFP2"></td>
+	</tr>
+	<tr>
+		<td style="text-align: left; padding:10px">Simplified rule of thumb for calculating patient's plasma volume,<br> limiting normal saline to 500 mL or less under any circumstances</td>
+		<td id="NS_2a"></td>
+		<td id="alb_2a"></td>
+		<td id="FFP3"></td>
+	</tr>
+	<tr>
+		<td style="text-align: left; padding:10px">Simplified rule of thumb for calculating patient's plasma volume,<br> allowing normal saline to exceed 500 mL if albumin ≥ 35 g/L</td>
+		<td id="NS_2b"></td>
+		<td id="alb_2b"></td>
+		<td id="FFP4"></td>
+	</tr>
+</table>
+
+<br><br>
+
+<footer>
+This spreadsheet was created to automate the calculations of volumes of replacement fluids for plasma exchange (aka plasmapharesis) carried out by the Division of Neurology at National University Hospital, Singapore. 
+<br><br>
+If you notice any errors, or have any suggestions for improvements, please send any feedback via email to <a href="mailto:yao_feng_chong@nuhs.edu.sg">yao_feng_chong@nuhs.edu.sg</a>. Thank you!
+<br><br>
+Created by Chong Yao Feng, Division of Neurology, National University Hospital.<br>
+Reference ranges for blood tests was taken from NUH laboratory's website at <a href="https://nuhsingapore.testcatalog.org/"> 
+https://nuhsingapore.testcatalog.org/</a> (cited 16 Jul 2020).<br><br>
+Version 1.0.<br>
+This webpage went live on 24 Jul 2020.<br>
+Last updated: 24 Jul 2020.
+</footer>
+
+<script>
+
+document.getElementById("plasmaVolumeOthers1").style.display = "none";
+document.getElementById("plasmaVolumeOthers2").style.display = "none";
+document.getElementById("results2").style.display = "none";
+
+function showOthers() {
+	document.getElementById("plasmaVolumeOthers1").style.display = "block";
+	document.getElementById("plasmaVolumeOthers2").style.display = "block";
+}
+
+function hideOthers() {
+	document.getElementById("plasmaVolumeOthers1").style.display = "none";
+	document.getElementById("plasmaVolumeOthers2").style.display = "none";
+}
+
+// The function 'calculate' is the real meat of the code, and as such, it is quite long.
+function calculate() {
+
+	// Define all the variables. If any of the questions were not answered, or were answered incorrectly, the function stops running and returns an appropriate error message.
+	var sex = "";
+		if (document.getElementById("male").checked) {
+			sex = "male";
+		}
+		else if (document.getElementById("female").checked) {
+			sex = "female";
+		}
+		else {
+			return document.getElementById("results").innerHTML = "<font color=red>Please fill in all the values first, and then click 'Calculate!' again.</font>";	
+		}
+	
+	var weight = "";
+		if (document.getElementById("weight").value === "") {
+			return document.getElementById("results").innerHTML = "<font color=red>Please fill in all the values first, and then click 'Calculate!' again.</font>";	
+		}	
+		else if (document.getElementById("weight").value <= 0) {
+			return document.getElementById("results").innerHTML = "<font color=red>The weight value cannot be 0 kg or less. Please correct it, and then click 'Calculate!' again.</font>";	
+		}
+		else {	
+			weight = document.getElementById("weight").value;
+		}
+		
+	var plasmaVolume = "";
+		if (document.getElementById("0.8").checked) {
+			plasmaVolume = 0.8;
+		}
+		else if (document.getElementById("1.0").checked) {
+			plasmaVolume = 1.0;
+		}
+		else if (document.getElementById("1.5").checked) {
+			plasmaVolume = 1.5;
+		}
+		else if (document.getElementById("2.0").checked) {
+			plasmaVolume = 2.0;
+		}
+		else if (document.getElementById("Others").checked) {
+			if (document.getElementById("plasmaVolumeOthers2").value === "") {
+				return document.getElementById("results").innerHTML = "<font color=red>Please fill in all the values first, and then click 'Calculate!' again.</font>";	
+			}
+			else if (document.getElementById("plasmaVolumeOthers2").value <= 0) {
+				return document.getElementById("results").innerHTML = "<font color=red>The plasma volume exchanged cannot be 0 or less. Please correct it, and then click 'Calculate!' again.</font>";	
+			}
+			else {
+				plasmaVolume = document.getElementById("plasmaVolumeOthers2").value;
+			}
+		}
+		else {
+			return document.getElementById("results").innerHTML = "<font color=red>Please fill in all the values first, and then click 'Calculate!' again.</font>";	
+		}
+	
+	var hct = "";
+		if (document.getElementById("hct").value === "") {
+			return document.getElementById("results").innerHTML = "<font color=red>Please fill in all the values first, and then click 'Calculate!' again.</font>";	
+		}
+		else if ((document.getElementById("hct").value < 0) || (document.getElementById("hct").value > 100)) {
+			return document.getElementById("results").innerHTML = "<font color=red>The haematocrit is outside of the range 0% to 100%. Please correct it, and then click 'Calculate!' again.</font>";	
+		}
+		else {
+			hct = document.getElementById("hct").value;
+		}
+	
+	var habitus = "";
+		if (document.getElementById("habitusNormal").checked) {
+			habitus = "normal";
+		}
+		else if (document.getElementById("habitusThin").checked) {
+			habitus = "thin";
+		}
+		else if (document.getElementById("habitusFat").checked) {
+			habitus = "fat";
+		}
+		else if (document.getElementById("habitusMuscular").checked) {
+			habitus = "muscular";
+		}
+		else {
+			return document.getElementById("results").innerHTML = "<font color=red>Please fill in all the values first, and then click 'Calculate!' again.</font>";	
+		}
+	
+	var albumin = "";
+		if (document.getElementById("less35").checked) {
+			albumin = "less35";
+		}
+		else if (document.getElementById("35orMore").checked) {
+			albumin = "35orMore";
+		}
+		else {
+			return document.getElementById("results").innerHTML = "<font color=red>Please fill in all the values first, and then click 'Calculate!' again.</font>";	
+		}
+
+	var conditions = "";
+		if (
+			document.getElementById("condition1").checked ||
+			document.getElementById("condition2").checked ||
+			document.getElementById("condition3").checked ||
+			document.getElementById("condition4").checked ||
+			document.getElementById("condition5").checked ||
+			document.getElementById("condition6").checked
+			) {
+			conditions = 1;
+		}
+		else {
+			conditions = 0;
+		}
+	
+	// Carry out calculations for Method 1: Gilcher's Rule of Five
+	var conversionFactor = "";
+		if ((sex === "male") && (habitus === "normal")) {
+			conversionFactor = 70;
+		}
+		else if ((sex === "male") && (habitus === "thin")) {
+			conversionFactor = 65;
+		}
+		else if ((sex === "male") && (habitus === "fat")) {
+			conversionFactor = 60;
+		}
+		else if ((sex === "male") && (habitus === "muscular")) {
+			conversionFactor = 75;
+		}
+		else if ((sex === "female") && (habitus === "normal")) {
+			conversionFactor = 65;
+		}
+		else if ((sex === "female") && (habitus === "thin")) {
+			conversionFactor = 60;
+		}
+		else if ((sex === "female") && (habitus === "fat")) {
+			conversionFactor = 55;
+		}
+		else {
+			conversionFactor = 70;
+		}
+	
+	var patientsPV_1 = (100 - hct) / 100 * weight * conversionFactor;
+	
+	var TVR_1 = patientsPV_1 * plasmaVolume;
+	
+	/*The variable suffix 1a indicates recommended volumes where normal saline does not exceed 500 mL under ANY circumstances, so as to reduce 
+	the risk of hypotension. The suffix 1b indicates recommended volumes where normal saline can exceed 500 mL if the latest albumin is >= 35 g/L.
+	*/
+	
+	var NS_1a = "";
+		if (albumin === "less35") {
+			NS_1a = 0.2 * TVR_1;
+			if (NS_1a >= 500) {
+				NS_1a = 500;
+			}
+			else {
+				NS_1a = Math.round(NS_1a / 250) * 250;
+			}
+		}
+		else {
+			NS_1a = 0.3 * TVR_1;
+			if (NS_1a >= 500) {
+				NS_1a = 500;
+			}
+			else {
+				NS_1a = Math.round(NS_1a / 250) * 250;
+			}
+		}
+	
+	var NS_1b = "";
+	if (albumin === "less35") {
+			NS_1b = 0.2 * TVR_1;
+			if (NS_1b >= 500) {
+				NS_1b = 500;
+			}
+			else {
+				NS_1b = Math.round(NS_1b / 250) * 250;
+			}
+		}
+		else {
+			NS_1b = 0.3 * TVR_1;
+			if (NS_1b >= 1000) {
+				NS_1b = 1000;
+			}
+			else {
+				NS_1b = Math.round(NS_1b / 250) * 250;
+			}
+		}
+	
+	var alb_1a = TVR_1 - NS_1a;
+		if (conditions === 0) {
+			alb_1a = Math.round(alb_1a / 250) * 250;
+		}
+		else {
+			alb_1a = (Math.round(alb_1a / 250) * 250) - 500;
+		}
+	
+	var alb_1b = TVR_1 - NS_1b;
+		if (conditions === 0) {
+			alb_1b = Math.round(alb_1b / 250) * 250;
+		}
+		else {
+			alb_1b = (Math.round(alb_1b / 250) * 250) - 500;
+		}
+	
+	var FFP = "";
+		if (conditions === 0) {
+			FFP = 0;
+		}
+		else {
+			FFP = 500;
+		}
+	
+	// Carry out calculations for Method 2. Note that the variable FFP does not need to be re-calculated as its volume is the same 
+	// regardless of the method chosen.
+	
+	var patientsPV_2 = weight * 40;
+	
+	var TVR_2 = patientsPV_2 * plasmaVolume;
+	
+	var NS_2a = "";
+		if (albumin === "less35") {
+			NS_2a = 0.2 * TVR_2;
+			if (NS_2a >= 500) {
+				NS_2a = 500;
+			}
+			else {
+				NS_2a = Math.round(NS_2a / 250) * 250;
+			}
+		}
+		else {
+			NS_2a = 0.3 * TVR_2;
+			if (NS_2a >= 500) {
+				NS_2a = 500;
+			}
+			else {
+				NS_2a = Math.round(NS_2a / 250) * 250;
+			}
+		}
+	
+	var NS_2b = "";
+	if (albumin === "less35") {
+			NS_2b = 0.2 * TVR_2;
+			if (NS_2b >= 500) {
+				NS_2b = 500;
+			}
+			else {
+				NS_2b = Math.round(NS_2b / 250) * 250;
+			}
+		}
+		else {
+			NS_2b = 0.3 * TVR_2;
+			if (NS_2b >= 1000) {
+				NS_2b = 1000;
+			}
+			else {
+				NS_2b = Math.round(NS_2b / 250) * 250;
+			}
+		}
+	
+	var alb_2a = TVR_2 - NS_2a;
+		if (conditions === 0) {
+			alb_2a = Math.round(alb_2a / 250) * 250;
+		}
+		else {
+			alb_2a = (Math.round(alb_2a / 250) * 250) - 500;
+		}
+	
+	var alb_2b = TVR_2 - NS_2b;
+		if (conditions === 0) {
+			alb_2b = Math.round(alb_2b / 250) * 250;
+		}
+		else {
+			alb_2b = (Math.round(alb_2b / 250) * 250) - 500;
+		}
+	
+	// Display the results
+	document.getElementById("NS_1a").innerHTML = NS_1a;
+	document.getElementById("NS_1b").innerHTML = NS_1b;
+	document.getElementById("NS_2a").innerHTML = NS_2a;
+	document.getElementById("NS_2b").innerHTML = NS_2b;
+	document.getElementById("alb_1a").innerHTML = alb_1a;
+	document.getElementById("alb_1b").innerHTML = alb_1b;
+	document.getElementById("alb_2a").innerHTML = alb_2a;
+	document.getElementById("alb_2b").innerHTML = alb_2b;
+	document.getElementById("FFP1").innerHTML = FFP;
+	document.getElementById("FFP2").innerHTML = FFP;
+	document.getElementById("FFP3").innerHTML = FFP;
+	document.getElementById("FFP4").innerHTML = FFP;
+	
+	document.getElementById("results2").style.display = "block";
+	
+}
+
+</script>
+
+
+</body>
+
+</html>
